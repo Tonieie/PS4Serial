@@ -44,12 +44,12 @@ class PS4Serial
     
     enum Axis
     {
-        PS4A_R2 = 1,
-        PS4A_L2,
-        PS4A_Lx,
+        PS4A_Lx = 1,
         PS4A_Ly,
+        PS4A_L2,
         PS4A_Rx,
         PS4A_Ry,
+        PS4A_R2,
         PS4A_Touch_X,
         PS4A_Touch_Y,
     };
