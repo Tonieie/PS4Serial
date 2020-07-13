@@ -7,11 +7,16 @@ PS4Serial::PS4Serial(){};
 void PS4Serial::setPort(HardwareSerial *port)
 {
     _port = port; //Set serial port
+    _port->begin(57600);
 }
 
 bool PS4Serial::getButton(Button button)
 {
-    unpack(); //Unpack data before return
+    if (millis() - last_time >= loop_time)
+    {
+        last_time = millis();
+        unpack(); //Unpack data before return
+    }
     switch (button)
     {
     //*****Left Button*****//
@@ -70,7 +75,11 @@ bool PS4Serial::getButton(Button button)
 
 uint8_t PS4Serial::getAnalog(Axis axis)
 {
-    unpack(); //Unpack data before return
+    if (millis() - last_time >= loop_time)
+    {
+        last_time = millis();
+        unpack(); //Unpack data before return
+    }
     switch (axis)
     {
     //*****Left Analog*****//
@@ -94,38 +103,30 @@ uint8_t PS4Serial::getAnalog(Axis axis)
     case PS4A_R2:
         return joyAnalog_R2;
         break;
-
-    default:
-        break;
     }
 }
 
 void PS4Serial::unpack(void)
 {
-    bool unpacked = false;
-    while (!unpacked)
+    counter = 0;
+    while (_port->available())
     {
-        counter = 0;
-        while (_port->available())
+        buffer[counter++] = _port->read();
+        if (counter == 0 && buffer[0] != '#')
+            counter = 0;
+        if ((buffer[counter - 11] == '#') && (buffer[counter - 10] == 's') && (buffer[counter - 1] == '\r') && (buffer[counter] == '\n'))
         {
-            buffer[counter++] = _port->read();
-            if (counter == 0 && buffer[0] != '#')
-                break;
-            else if ((buffer[counter - 11] == '#') && (buffer[counter - 10] == 's') && (buffer[counter - 1] == '\r') && (buffer[counter] == '\n'))
-            {
-                joyAnalog_Lx = buffer[counter - 9];
-                joyAnalog_Ly = buffer[counter - 8];
-                joyAnalog_L2 = buffer[counter - 7];
-                joyAnalog_Rx = buffer[counter - 6];
-                joyAnalog_Ry = buffer[counter - 5];
-                joyAnalog_R2 = buffer[counter - 4];
-                button_left.asByte = buffer[counter - 3];
-                button_right.asByte = buffer[counter - 2];
-                unpacked = true;
-            }
-            if (counter >= (buff_len * 2))
-                break;
+            joyAnalog_Lx = buffer[counter - 9];
+            joyAnalog_Ly = buffer[counter - 8];
+            joyAnalog_L2 = buffer[counter - 7];
+            joyAnalog_Rx = buffer[counter - 6];
+            joyAnalog_Ry = buffer[counter - 5];
+            joyAnalog_R2 = buffer[counter - 4];
+            button_left.asByte = buffer[counter - 3];
+            button_right.asByte = buffer[counter - 2];
+            break;
         }
+        if (counter >= (buff_len * 2))
+            counter = 0;
     }
-    return;
 }
