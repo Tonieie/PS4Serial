@@ -23,6 +23,7 @@ class PS4Serial
         } asBool;
     };
 
+public:
     enum Button
     {
         PS4B_Triangle = 1,
@@ -41,7 +42,7 @@ class PS4Serial
         PS4B_Share,
         PS4B_Touch,
     };
-    
+
     enum Axis
     {
         PS4A_Lx = 1,
@@ -53,8 +54,6 @@ class PS4Serial
         PS4A_Touch_X,
         PS4A_Touch_Y,
     };
-
-public:
     PS4Serial(void);
     void setPort(HardwareSerial *port);
     bool getButton(Button button);
@@ -63,11 +62,12 @@ public:
 private:
     HardwareSerial *_port = NULL;
     uint8_t buff_len = 12;
+    uint32_t last_time = 0, loop_time = 10;
     volatile uint8_t buffer[24]; //buffer size = data_len * 2
     volatile uint8_t counter = 0;
-    Boolconv button_left,button_right;
-    uint8_t joyAnalog_Lx = 0, joyAnalog_Ly = 0,joyAnalog_L2 = 0, joyAnalog_Rx = 0, joyAnalog_Ry = 0,joyAnalog_R2 = 0;
-    
+    Boolconv button_left, button_right;
+    uint8_t joyAnalog_Lx = 0, joyAnalog_Ly = 0, joyAnalog_L2 = 0, joyAnalog_Rx = 0, joyAnalog_Ry = 0, joyAnalog_R2 = 0;
+
     void unpack(void);
 };
 
