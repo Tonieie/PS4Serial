@@ -1,0 +1,46 @@
+#######################################
+# Syntax Coloring Map PS2X
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+PS4Serial	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+getButton	KEYWORD2
+getAnalog	KEYWORD2
+setPort	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+PS4B_Triangle	LITERAL1
+PS4B_Circle	LITERAL1
+PS4B_Cross	LITERAL1
+PS4B_Square	LITERAL1
+PS4B_UP	LITERAL1
+PS4B_Right	LITERAL1
+PS4B_Down	LITERAL1
+PS4B_R1	LITERAL1
+PS4B_Left	LITERAL1
+PS4B_R3	LITERAL1
+PS4B_L1	LITERAL1
+PS4B_L3	LITERAL1
+PS4B_Options	LITERAL1
+PS4B_Share	LITERAL1
+PS4B_Touch	LITERAL1
+
+PS4A_Lx	LITERAL1
+PS4A_Ly	LITERAL1
+PS4A_L2	LITERAL1
+PS4A_Rx	LITERAL1
+PS4A_Ry	LITERAL1
+PS4A_R2	LITERAL1
+PS4A_Touch_X	LITERAL1
+PS4A_Touch_Y	LITERAL1
