@@ -23,6 +23,12 @@ class PS4Serial
         } asBool;
     };
 
+    union IntToByte
+    {
+        uint16_t asInt;
+        uint8_t asByte[2];
+    };
+
 public:
     enum Button
     {
@@ -56,16 +62,21 @@ public:
     };
     PS4Serial(void);
     void setPort(HardwareSerial *port); //Set Serial port
-    bool getButton(Button button); //Get Button state
-    uint8_t getAnalog(Axis axis); //Get Analog value
+    bool getButton(Button button);      //Get Button state
+    uint8_t getAnalog(Axis axis);       //Get Analog value
+    bool isConnected(void);
+    bool isTouching(bool finger);
+    uint16_t getX(bool finger);
+    uint16_t getY(bool finger);
 
 private:
     HardwareSerial *_port = NULL;
-    uint8_t buff_len = 12;
+    uint8_t buff_len = 21;
     uint32_t last_time = 0, loop_time = 10; //Set loop frequency to 100 Hz
-    volatile uint8_t buffer[24]; //buffer size = data_len * 2
+    volatile uint8_t buffer[42];            //buffer size = data_len * 2
     volatile uint8_t counter = 0;
-    Boolconv button_left, button_right;
+    Boolconv button_left, button_right, button_center;
+    IntToByte touch_x1,touch_y1,touch_x2,touch_y2;
     uint8_t joyAnalog_Lx = 0, joyAnalog_Ly = 0, joyAnalog_L2 = 0, joyAnalog_Rx = 0, joyAnalog_Ry = 0, joyAnalog_R2 = 0;
 
     void unpack(void);
