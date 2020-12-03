@@ -76,7 +76,7 @@ bool PS4Serial::getButton(Button button)
     }
 }
 
-bool PS4Serial::getButton(uint16_t button)
+bool PS4Serial::getButton(uint8_t button)
 {
     if (millis() - last_time >= loop_time)
     {
@@ -216,7 +216,7 @@ uint8_t PS4Serial::getAnalog(Axis axis)
     }
 }
 
-uint8_t PS4Serial::getAnalog(uint16_t axis)
+uint8_t PS4Serial::getAnalog(uint8_t axis)
 {
     if (millis() - last_time >= loop_time)
     {
