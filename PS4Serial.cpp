@@ -76,6 +76,72 @@ bool PS4Serial::getButton(Button button)
     }
 }
 
+bool PS4Serial::getButton(uint16_t button)
+{
+    if (millis() - last_time >= loop_time)
+    {
+        last_time = millis();
+        unpack(); //Unpack data before return
+    }
+    switch (button)
+    {
+    //*****Left Button*****//
+    case PSB_UP:
+        return button_left.asBool.bit0;
+        break;
+    case PSB_Right:
+        return button_left.asBool.bit1;
+        break;
+    case PSB_Down:
+        return button_left.asBool.bit2;
+        break;
+    case PSB_Left:
+        return button_left.asBool.bit3;
+        break;
+    case PSB_L1:
+        return button_left.asBool.bit4;
+        break;
+    case PSB_Share:
+        return button_left.asBool.bit5;
+        break;
+    case PSB_L3:
+        return button_left.asBool.bit6;
+        break;
+
+    //*****Right Button*****//
+    case PSB_Triangle:
+        return button_right.asBool.bit0;
+        break;
+    case PSB_Circle:
+        return button_right.asBool.bit1;
+        break;
+    case PSB_Cross:
+        return button_right.asBool.bit2;
+        break;
+    case PSB_Square:
+        return button_right.asBool.bit3;
+        break;
+    case PSB_R1:
+        return button_right.asBool.bit4;
+        break;
+    case PSB_Options:
+        return button_right.asBool.bit5;
+        break;
+    case PSB_R3:
+        return button_right.asBool.bit6;
+        break;
+
+    //*****Center Button*****//
+    case PSB_Touch:
+        return button_center.asBool.bit0;
+        break;
+
+    default:
+        return NULL;
+        break;
+    }
+}
+
 bool PS4Serial::isTouching(bool finger)
 {
     if(finger == 0)
@@ -145,6 +211,39 @@ uint8_t PS4Serial::getAnalog(Axis axis)
         return joyAnalog_Ry;
         break;
     case PS4A_R2:
+        return joyAnalog_R2;
+        break;
+    }
+}
+
+uint8_t PS4Serial::getAnalog(uint16_t axis)
+{
+    if (millis() - last_time >= loop_time)
+    {
+        last_time = millis();
+        unpack(); //Unpack data before return
+    }
+    switch (axis)
+    {
+    //*****Left Analog*****//
+    case PSA_Lx:
+        return joyAnalog_Lx;
+        break;
+    case PSA_Ly:
+        return joyAnalog_Ly;
+        break;
+    case PSA_L2:
+        return joyAnalog_L2;
+        break;
+
+    //*****Right Analog*****//
+    case PSA_Rx:
+        return joyAnalog_Rx;
+        break;
+    case PSA_Ry:
+        return joyAnalog_Ry;
+        break;
+    case PSA_R2:
         return joyAnalog_R2;
         break;
     }

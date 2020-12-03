@@ -4,6 +4,35 @@
 #include <Arduino.h>
 #include <HardwareSerial.h>
 
+//These are button constant
+#define PSB_Triangle 0x01
+#define PSB_Triangle 0x02
+#define PSB_Circle 0x03
+#define PSB_Cross 0x04
+#define PSB_Square 0x05
+#define PSB_UP 0x06
+#define PSB_Right 0x07
+#define PSB_Down 0x08
+#define PSB_Left 0x09
+#define PSB_R1 0x0A
+#define PSB_R3 0x0B
+#define PSB_L1 0x0C
+#define PSB_L3 0x0D
+#define PSB_Options 0x0E
+#define PSB_Share 0x0F
+#define PSB_Touch 0x10
+
+
+//These are analog button constant
+#define PSA_Lx 0x0100
+#define PSA_Ly 0x0200
+#define PSA_L2 0x0300
+#define PSA_Rx 0x0400
+#define PSA_Ry 0x0500
+#define PSA_R2 0x0600
+#define PSA_Touch_X 0x0700
+#define PSA_Touch_Y 0x0800
+
 class PS4Serial
 {
     union Boolconv //Union data for convertion between byte and bit
@@ -62,8 +91,13 @@ public:
     };
     PS4Serial(void);
     void setPort(HardwareSerial *port); //Set Serial port
-    bool getButton(Button button);      //Get Button state
-    uint8_t getAnalog(Axis axis);       //Get Analog value
+
+    bool getButton(Button button);      //Get Button state For VS Code Programmer
+    bool getButton(uint16_t);           //Get Button state For Arduino IDE Programmer
+
+    uint8_t getAnalog(Axis axis);       //Get Analog value For VS Code Programmer
+    uint8_t getAnalog(uint16_t);        //Get Analog value For Arduino IDE Programmer
+
     bool isConnected(void);
     bool isTouching(bool finger);
     uint16_t getX(bool finger);

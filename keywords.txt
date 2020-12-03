@@ -20,6 +20,10 @@ setPort	KEYWORD2
 # Constants (LITERAL1)
 #######################################
 
+#######################################
+# For VS Code Programmer
+#######################################
+
 PS4B_Triangle	LITERAL1
 PS4B_Circle	LITERAL1
 PS4B_Cross	LITERAL1
@@ -44,3 +48,32 @@ PS4A_Ry	LITERAL1
 PS4A_R2	LITERAL1
 PS4A_Touch_X	LITERAL1
 PS4A_Touch_Y	LITERAL1
+
+#######################################
+# For Arduino IDE Programmer
+#######################################
+
+PSB_Triangle	LITERAL1
+PSB_Circle	LITERAL1
+PSB_Cross	LITERAL1
+PSB_Square	LITERAL1
+PSB_UP	LITERAL1
+PSB_Right	LITERAL1
+PSB_Down	LITERAL1
+PSB_R1	LITERAL1
+PSB_Left	LITERAL1
+PSB_R3	LITERAL1
+PSB_L1	LITERAL1
+PSB_L3	LITERAL1
+PSB_Options	LITERAL1
+PSB_Share	LITERAL1
+PSB_Touch	LITERAL1
+
+PSA_Lx	LITERAL1
+PSA_Ly	LITERAL1
+PSA_L2	LITERAL1
+PSA_Rx	LITERAL1
+PSA_Ry	LITERAL1
+PSA_R2	LITERAL1
+PSA_Touch_X	LITERAL1
+PSA_Touch_Y	LITERAL1
