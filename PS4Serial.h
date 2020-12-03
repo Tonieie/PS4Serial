@@ -9,7 +9,7 @@
 #define PSB_Circle 0x02
 #define PSB_Cross 0x03
 #define PSB_Square 0x04
-#define PSB_UP 0x05
+#define PSB_Up 0x05
 #define PSB_Right 0x06
 #define PSB_Down 0x07
 #define PSB_Left 0x08
@@ -63,7 +63,7 @@ public:
         PS4B_Circle,
         PS4B_Cross,
         PS4B_Square,
-        PS4B_UP,
+        PS4B_Up,
         PS4B_Right,
         PS4B_Down,
         PS4B_Left,

@@ -20,7 +20,7 @@ bool PS4Serial::getButton(Button button)
     switch (button)
     {
     //*****Left Button*****//
-    case PS4B_UP:
+    case PS4B_Up:
         return button_left.asBool.bit0;
         break;
     case PS4B_Right:
@@ -86,7 +86,7 @@ bool PS4Serial::getButton(uint8_t button)
     switch (button)
     {
     //*****Left Button*****//
-    case PSB_UP:
+    case PSB_Up:
         return button_left.asBool.bit0;
         break;
     case PSB_Right:
