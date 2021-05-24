@@ -254,7 +254,7 @@ void PS4Serial::unpack(void)
     counter = 0;
     while (_port->available())
     {
-        buffer[counter++] = _port->read();
+        buffer[counter] = _port->read();
         if (counter == 0 && buffer[0] != '#')
             counter = 0;
         if ((buffer[counter - 20] == '#') && (buffer[counter - 19] == 's') && (buffer[counter - 1] == '\r') && (buffer[counter] == '\n'))
@@ -284,5 +284,7 @@ void PS4Serial::unpack(void)
         }
         if (counter >= (buff_len * 2))
             counter = 0;
+        else
+            counter++;
     }
 }
